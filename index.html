@@ -21,7 +21,7 @@
         </a>
         <div id="timer">
 
-            <p>Time Remaining: <span id="counter"></span></p>
+            <p><span id="counter"></span></p>
 
         </div>
 
@@ -50,9 +50,11 @@
         <div class="col-lg-6 col-sm-12 mx-auto">
             <p><strong>All done!</strong></p>
             <p>Your final score is </p>
-            <form action="#">
-                Enter Initials: <input type="text" name="Initials" value="Your Initials">
-                <input type="submit" id="submitScore" value="Submit">
+            <form method="POST">
+                <label for="initials">Initials</label>
+                <input type="text" name="initials" id="initials" placeholder="Your Initials"/>
+                <div id="msg"></div>
+                <button type="button" id="submit">Submit</button>
             </form>
         </div>
         <!-- High scores screen -->
