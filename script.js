@@ -60,3 +60,48 @@ function setTime() {
 }
 
 setTime();
+
+// Local storage user
+
+var initialsInput = document.querySelector("#initials");
+var submitButton = document.querySelector("#submit");
+var msgDiv = document.querySelector("#msg");
+var userInitialsSpan = document.querySelector("#user-initials");
+var userScoreSpan = document.querySelector("#user-score");
+
+
+renderScores();
+
+function displayMessage(type, message) {
+    msgDiv.textContent = message;
+    msgDiv.setAttribute("class", type);
+}
+
+function renderScores() {
+    var initials = localStorage.getItem("initials");
+    var score = localStorage.getItem("score");
+
+    if (initials === null) {
+        return;
+    }
+
+    userInitialsSpan.textContent = initials;
+    userScoreSpan.textContent = score;
+}
+
+submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    var initials = document.querySelector("#initials").value;
+    var score = document.querySelector("#score").value;
+
+    if (initials === "") {
+        displayMessage("error", "Please enter your initials");
+    } else {
+        displayMessage("success", "Score saved");
+
+        localStorage.setItem("initials", initials);
+        localStorage.setItem("score", score);
+        renderScores();
+    }
+});
