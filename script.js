@@ -3,7 +3,6 @@
 var questions = [
 
     {
-
         title: "Commonly used data types DO NOT include:",
         choices: ["strings", "booleans", "alerts", "numbers"],
         answer: "alerts"
@@ -105,3 +104,32 @@ submitButton.addEventListener("click", function (event) {
         renderScores();
     }
 });
+
+// Page navigation and hiding
+
+var highScoreButton = document.querySelector("#scores-link");
+var startButton = document.querySelector("#start-btn");
+var goBackButton = document.querySelector("#goBack");
+var submitButton = document.querySelector("#submit");
+
+highScoreButton.addEventListener("click", function(){
+    startSection.classList.add("hide");
+    highScoreSection.classList.remove("hide");
+})
+startButton.addEventListener("click", function(){
+    startSection.classList.add("hide");
+    quizSection.classList.remove("hide");
+    timeInterval=setInterval(scoreKeeper, 1000)
+    loadQuestion(questions[iterator]);
+})
+goBackButton.addEventListener("click", function(){
+    startSection.classList.remove("hide");
+    resultSection.classList.add("hide");
+})
+submitButton.addEventListener("click", function(event){
+    event.preventDefault();
+    var user = {initials: initialsInput.value.trim()}
+    if(user.initials===""){
+        alert("Error: You have to enter your initials!");
+    }else{alert("Success! You have been added to the highscores list!")}
+})
