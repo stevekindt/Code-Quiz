@@ -1,12 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <!-- Header containing high scores link and timer. Visible on every page view -->
+    <header class="container" id="header">
+
+        <a id="scores-link" href="#">
+
+            View High Scores
+
+        </a>
+        <div id="timer">
+
+            <p>Time Remaining: <span id="counter"></span></p>
+
+        </div>
+
+    </header>
+    <!-- Main section containing intro screen, questions, score submission, and high scores screen -->
+    <div class="main" id="main-content">
+        <!-- Intro screen -->
+        <div class="col-lg-6 col-sm-12 mx-auto">
+            <h1><strong>Coding Quiz</strong></h1>
+            <p>This will be a timed quiz consisting of 5 questions. You will have 75 seconds to complete this quiz. Your
+                score will be higher if you answer quickly, but be careful because incorrect answers will deduct 15
+                seconds from your remaining time. Good luck!</p>
+            <button type="button" id="start-btn">Start</button>
+        </div>
+        <!-- Questions -->
+        <div class="col-lg-6 col-sm-12 mx-auto">
+            <p id="question"><strong>Palceholder Question 1</strong></p>
+        </div>
+        <div class="col-lg-3 col-sm-6 mx-auto" id="answers">
+            <button type="button" id="option-0">Option 1</button>
+            <button type="button" id="option-1">Option 2</button>
+            <button type="button" id="option-2">Option 3</button>
+            <button type="button" id="option-3">Option 4</button>
+        </div>
+        <!-- Score submission screen -->
+        <div class="col-lg-6 col-sm-12 mx-auto">
+            <p><strong>All done!</strong></p>
+            <p>Your final score is </p>
+            <form action="#">
+                Enter Initials: <input type="text" name="Initials" value="Your Initials">
+                <input type="submit" id="submitScore" value="Submit">
+            </form>
+        </div>
+        <!-- High scores screen -->
+        <div class="col-lg-6 col-sm-12 mx-auto">
+            <h1>Scores</h1>
+            <ol id="scoresList"></ol>
+
+            <button type="button" id="clearScores">Clear Scores</button>
+            <button type="button" id="goBack">Go Back</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
