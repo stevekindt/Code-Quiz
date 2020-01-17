@@ -74,6 +74,11 @@ function setTime() {
 
 }
 
+// Need event listener to detect incorrect answers to trigger the 15 second penalty. For loop to cycle through questions. Evaluate for the right (correct) answer. If correct, nothing. Else, subtract 15 from secondsLeft
+
+// If the answer is correct, no action is taken
+// Else we subtract 15 from timeEl
+
 // Local storage user
 
 var initialsInput = document.querySelector("#initials");
@@ -173,4 +178,3 @@ document.querySelectorAll(".btn-block").forEach(function(element){
     })
 })
 
-// Need event listener to detect incorrect answers to trigger the 15 second penalty
