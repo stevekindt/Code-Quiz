@@ -8,7 +8,7 @@ var timer = document.getElementById("counter");
 var highScoreSection = document.getElementById("highscore");
 var highScoreButton = document.getElementById("scores-link");
 var goBackButton = document.getElementById("goBack");
-var submitButton= document.getElementById("submit");
+var submitButton = document.getElementById("submit");
 var initialsInput = document.querySelector("#initials")
 var optionOne = document.getElementById("0");
 var optionTwo = document.getElementById("1");
@@ -62,22 +62,23 @@ var secondsLeft = 75;
 
 function setTime() {
 
-        secondsLeft--;
+    secondsLeft--;
 
-        timeEl.innerText = secondsLeft;
+    timeEl.innerText = secondsLeft;
 
-        if (secondsLeft === 0) {
+    if (secondsLeft === 0) {
 
-            clearInterval(timerInterval);
+        window.clearInterval(timeInterval);
 
-        }
+    }
 
 }
 
-// Need event listener to detect incorrect answers to trigger the 15 second penalty. For loop to cycle through questions. Evaluate for the right (correct) answer. If correct, nothing. Else, subtract 15 from secondsLeft
+// Need event listener to detect incorrect answers to trigger the 15 second penalty.
 
-// If the answer is correct, no action is taken
-// Else we subtract 15 from timeEl
+// if (questions.answer !== questions.choices[i]) {
+//     secondsLeft = secondsLeft - 15;
+// }
 
 // Local storage user
 
@@ -126,10 +127,10 @@ submitButton.addEventListener("click", function (event) {
 
 // question Object
 
-function loadQuestion(questionObj){
-    document.getElementById("question").innerText=questionObj.title
-    for(var i = 0;i<questionObj.choices.length; i++){
-        document.getElementById(i).innerText=questionObj.choices[i];
+function loadQuestion(questionObj) {
+    document.getElementById("question").innerText = questionObj.title
+    for (var i = 0; i < questionObj.choices.length; i++) {
+        document.getElementById(i).innerText = questionObj.choices[i];
     }
 }
 
@@ -142,37 +143,45 @@ var startButton = document.querySelector("#start-btn");
 var goBackButton = document.querySelector("#goBack");
 var submitButton = document.querySelector("#submit");
 
-highScoreButton.addEventListener("click", function(){
+highScoreButton.addEventListener("click", function () {
     startSection.classList.add("hide");
     highScoreSection.classList.remove("hide");
 })
-startButton.addEventListener("click", function(){
+startButton.addEventListener("click", function () {
     startSection.classList.add("hide");
     quizSection.classList.remove("hide");
-    timeInterval=setInterval(setTime, 1000)
+    timeInterval = setInterval(setTime, 1000);
     loadQuestion(questions[iterator]);
 })
-goBackButton.addEventListener("click", function(){
+goBackButton.addEventListener("click", function () {
     startSection.classList.remove("hide");
     resultSection.classList.add("hide");
 })
-submitButton.addEventListener("click", function(event){
+submitButton.addEventListener("click", function (event) {
     event.preventDefault();
-    var user = {initials: initialsInput.value.trim()}
-    if(user.initials===""){
+    var user = { initials: initialsInput.value.trim() }
+    if (user.initials === "") {
         alert("Error: You have to enter your initials!");
-    }else{alert("Success! You have been added to the highscores list!")}
+    } else {
+        alert("Success! You have been added to the highscores list!");
+    }
+    document.getElementById("user-initials").innerText = initialsInput;
+    document.getElementById("user-score").innerText = secondsLeft;
+    highScoreSection.classList.remove("hide");
+    resultSection.classList.add("hide");
 })
 
 // Moves between questions
 
-document.querySelectorAll(".btn-block").forEach(function(element){
-    element.addEventListener("click", function(event){
+document.querySelectorAll(".btn-block").forEach(function (element) {
+    element.addEventListener("click", function (event) {
         iterator++;
-        if (iterator<=4){
+        if (iterator <= 4) {
             loadQuestion(questions[iterator]);
-        } else{
+        } else {
             quizSection.classList.add("hide");
+            document.getElementById("finalscore").innerText = secondsLeft;
+            clearInterval(timeInterval);
             resultSection.classList.remove("hide");
         }
     })
