@@ -29,41 +29,50 @@
     <!-- Main section containing intro screen, questions, score submission, and high scores screen -->
     <div class="main" id="main-content">
         <!-- Intro screen -->
-        <div class="col-lg-6 col-sm-12 mx-auto">
-            <h1><strong>Coding Quiz</strong></h1>
-            <p>This will be a timed quiz consisting of 5 questions. You will have 75 seconds to complete this quiz. Your
-                score will be higher if you answer quickly, but be careful because incorrect answers will deduct 15
-                seconds from your remaining time. Good luck!</p>
-            <button type="button" id="start-btn">Start</button>
+        <div id="start">
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <h1><strong>Coding Quiz</strong></h1>
+                <p>This will be a timed quiz consisting of 5 questions. You will have 75 seconds to complete this quiz.
+                    Your
+                    score will be higher if you answer quickly, but be careful because incorrect answers will deduct 15
+                    seconds from your remaining time. Good luck!</p>
+                <button type="button" id="start-btn">Start</button>
+            </div>
         </div>
         <!-- Questions -->
-        <div class="col-lg-6 col-sm-12 mx-auto hide">
-            <p id="question"><strong>question</strong></p>
-        </div>
-        <div class="col-lg-3 col-sm-6 mx-auto" id="answers">
-            <button type="button" id="0">Option 1</button>
-            <button type="button" id="1">Option 2</button>
-            <button type="button" id="2">Option 3</button>
-            <button type="button" id="3">Option 4</button>
+        <div id="quiz" class="hide">
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <p id="question"><strong>question</strong></p>
+            </div>
+            <div class="col-lg-3 col-sm-6 mx-auto btn-block" id="answers">
+                <button type="button" id="0">Option 1</button>
+                <button type="button" id="1">Option 2</button>
+                <button type="button" id="2">Option 3</button>
+                <button type="button" id="3">Option 4</button>
+            </div>
         </div>
         <!-- Score submission screen -->
-        <div class="col-lg-6 col-sm-12 mx-auto hide">
-            <p><strong>All done!</strong></p>
-            <p>Your final score is </p>
-            <form method="POST">
-                <label for="initials">Initials</label>
-                <input type="text" name="initials" id="initials" placeholder="Your Initials" />
-                <div id="msg"></div>
-                <button type="button" id="submit">Submit</button>
-            </form>
+        <div id="results" class="hide">
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <p><strong>All done!</strong></p>
+                <p>Your final score is </p>
+                <form method="POST">
+                    <label for="initials">Initials</label>
+                    <input type="text" name="initials" id="initials" placeholder="Your Initials" />
+                    <div id="msg"></div>
+                    <button type="button" id="submit">Submit</button>
+                </form>
+            </div>
         </div>
         <!-- High scores screen -->
-        <div class="col-lg-6 col-sm-12 mx-auto hide">
-            <h1>Scores</h1>
-            <p><span id="user-initials"></span></p>
-            <p><span id="user-score"></span></p>
-            <button type="button" id="clearScores">Clear Scores</button>
-            <button type="button" id="goBack">Go Back</button>
+        <div id="highscore" class="hide">
+            <div class="col-lg-6 col-sm-12 mx-auto">
+                <h1>Scores</h1>
+                <p><span id="user-initials"></span></p>
+                <p><span id="user-score"></span></p>
+                <button type="button" id="clearScores">Clear Scores</button>
+                <button type="button" id="goBack">Go Back</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

@@ -1,3 +1,23 @@
+// Global variables
+
+var startButton = document.getElementById("start-btn");
+var startSection = document.getElementById("start");
+var quizSection = document.getElementById("quiz");
+var resultSection = document.getElementById("results");
+var timer = document.getElementById("counter");
+var highScoreSection = document.getElementById("highscore");
+var highScoreButton = document.getElementById("scores-link");
+var goBackButton = document.getElementById("goBack");
+var submitButton= document.getElementById("submit");
+var initialsInput = document.querySelector("#initials")
+var optionOne = document.getElementById("0");
+var optionTwo = document.getElementById("1");
+var optionThree = document.getElementById("2");
+var optionFour = document.getElementById("3");
+var score = 100;
+var timeInterval;
+var iterator = 0;
+
 // Question and answer array
 
 var questions = [
@@ -34,7 +54,7 @@ var questions = [
     }
 ];
 
-// Timer interval
+// Timer interval. Need to stop timeEl when it reaches 0 or when final question is answered.
 
 var timeEl = document.querySelector("#counter");
 
@@ -42,11 +62,9 @@ var secondsLeft = 75;
 
 function setTime() {
 
-    var timerInterval = setInterval(function () {
-
         secondsLeft--;
 
-        timeEl.textContent = “Time Remaining: “ + secondsLeft;
+        timeEl.innerText = secondsLeft;
 
         if (secondsLeft === 0) {
 
@@ -54,11 +72,7 @@ function setTime() {
 
         }
 
-    }, 1000);
-
 }
-
-setTime();
 
 // Local storage user
 
@@ -105,6 +119,17 @@ submitButton.addEventListener("click", function (event) {
     }
 });
 
+// question Object
+
+function loadQuestion(questionObj){
+    document.getElementById("question").innerText=questionObj.title
+    for(var i = 0;i<questionObj.choices.length; i++){
+        document.getElementById(i).innerText=questionObj.choices[i];
+    }
+}
+
+var iterator = 0;
+
 // Page navigation and hiding
 
 var highScoreButton = document.querySelector("#scores-link");
@@ -119,7 +144,7 @@ highScoreButton.addEventListener("click", function(){
 startButton.addEventListener("click", function(){
     startSection.classList.add("hide");
     quizSection.classList.remove("hide");
-    timeInterval=setInterval(scoreKeeper, 1000)
+    timeInterval=setInterval(setTime, 1000)
     loadQuestion(questions[iterator]);
 })
 goBackButton.addEventListener("click", function(){
@@ -133,3 +158,19 @@ submitButton.addEventListener("click", function(event){
         alert("Error: You have to enter your initials!");
     }else{alert("Success! You have been added to the highscores list!")}
 })
+
+// Moves between questions
+
+document.querySelectorAll(".btn-block").forEach(function(element){
+    element.addEventListener("click", function(event){
+        iterator++;
+        if (iterator<=4){
+            loadQuestion(questions[iterator]);
+        } else{
+            quizSection.classList.add("hide");
+            resultSection.classList.remove("hide");
+        }
+    })
+})
+
+// Need event listener to detect incorrect answers to trigger the 15 second penalty
